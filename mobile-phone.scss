@@ -1,0 +1,112 @@
+// Shared color variables
+
+// Reduce by a factor of 10 - receives any type
+@function redux-10($number){
+  @return $number/10;
+}
+
+@mixin reduce($width){
+  width: redux-10($width);
+  height: redux-10($width);
+}
+
+@function redux($number, $factor){
+  @return $number/$factor;
+}
+
+// Convert px to em for fluid font sizing
+$browser-context: 16; // Default
+
+@function em($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}em;
+}
+
+body{
+  height: 100%;
+}
+
+// :not(div){
+//   border:1px solid #e2e2e2;
+// }
+span{
+  display: inline-block;
+  position: absolute;
+  transition: all ease .7s;
+  // border:1px solid #e2e2e2;
+}
+.phone{
+  width:100%;
+  height: 115vh;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+$white: #ffffff;
+$dimgray: #eee;
+
+.phone__body{
+  width: 375px;
+  height: 667px;
+  border-radius: 35px;
+  // box-shadow: 0px 0px 35px $dimgray;
+  box-shadow: 0px 0px 55px #dcdcdc;
+
+  .phone__antenna{
+    background: $dimgray;
+    border-radius: 100%;
+    width: 7px;
+    height: 7px;
+    top: 40px;
+    left: 135px;
+    
+  }
+  .phone__receiver{
+    background: $dimgray;
+    border-radius: 50px;
+    height: 7px;
+    width: 70px;
+    top: 40px;
+    left: 155px;
+  }
+  .phone__screen{
+    width: 335px;
+    height: 500px;
+    border-radius: 3px;
+    background: lighten($dimgray, 2%);
+    left: 20px;
+    top: 80px;
+  }
+  .finger-print{
+    border-radius: 100%;
+    // @include reduce(35px); 
+    width: redux(35px, 1); 
+    // reduce the width by a factor of 1
+    height: redux(35px, 1); 
+    // reduce the width by a factor of 1
+    border: 4px solid $dimgray;
+    left: 170px;
+    // background-color: $dimgray;
+    bottom: 20px;
+    box-shadow: 0 0 0   rgba(pink, .4);
+  }
+
+}
+
+.pulsate{
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(#b1adad, .4);
+  }
+  70% {
+      box-shadow: 0 0 0 10px rgba(#b1adad, 0);
+  }
+  100% {
+      box-shadow: 0 0 0 0 rgba(#b1adad, 0);
+  }
+}
+
+
+// Shrink device layout in smaller screens
